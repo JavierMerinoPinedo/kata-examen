@@ -80,8 +80,6 @@ class CompraTest extends TestCase
      */
     public function givenAEmptyOrderReturnsEmptyPurchase(): void
     {
-        $result = $this->compra->execute('vaciar');
-
-        $this->assertEquals('', $result);
+        $this->assertEquals('', $this->compra->execute('vaciar'));
     }
 }

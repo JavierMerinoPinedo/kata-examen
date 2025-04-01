@@ -4,7 +4,7 @@ namespace Deg540\DockerPHPBoilerplate;
 
 class Compra
 {
-    public String $productos = '';
+    private String $productos = '';
     public function execute($string): string
     {
         $string = explode(' ', $string);
