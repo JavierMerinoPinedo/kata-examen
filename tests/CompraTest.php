@@ -10,7 +10,7 @@ class CompraTest extends TestCase
     /**
      * @test
      */
-    public function dadoUnProductoSeAñadeALaCompra(): void
+    public function givenAProductIsAddedToThePurchase(): void
     {
         $compra = new Compra();
 
@@ -22,7 +22,7 @@ class CompraTest extends TestCase
     /**
      * @test
      */
-    public function dadoUnProductoConMayusculasSeAñadeALaCompraEnMinusculas(): void
+    public function givenAProductWithUpperAndLowerCaseIsAddedToThePurchaseWithLowerCase(): void
     {
         $compra = new Compra();
 

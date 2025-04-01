@@ -4,7 +4,7 @@ namespace Deg540\DockerPHPBoilerplate;
 
 class Compra
 {
-    private $productos = [];
+    private array $productos = [];
     public function execute($string): string
     {
         // $string = 'añadir pan x1';
