@@ -4,7 +4,7 @@ namespace Deg540\DockerPHPBoilerplate;
 
 class Compra
 {
-    private array $productos = [];
+    public String $productos = '';
     public function execute($string): string
     {
         // $string = 'añadir pan x1';
@@ -12,9 +12,17 @@ class Compra
         $cantidad = (count($string) < 3) ? 1 : $string[2];
 
         if($string[0] == 'añadir') {
-            $this->productos[] = strtolower($string[1]) . ' x' . $cantidad;
+            if($this->productos != '') {
+                if (str_contains($this->productos, strtolower($string[1]))) {
+                    $prod = explode(' ', $this->productos);
+                    $cantidad = ((int) $prod[1][1] + $cantidad);
+                    $this->productos = strtolower($string[1]) . ' x' . $cantidad;
+                }
+            } else {
+                $this->productos = $this->productos . strtolower($string[1]) . ' x' . $cantidad;
+            }
         }
 
-        return $this->productos[0];
+        return $this->productos;
     }
 }
