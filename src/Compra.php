@@ -24,6 +24,9 @@ class Compra
                 $this->productos = $this->productos . strtolower($string[1]) . ' x' . $cantidad;
             }
         } elseif ($string[0] == 'eliminar') {
+            if($this->productos == '' || !str_contains($this->productos, strtolower($string[1]))) {
+                return 'El producto seleccionado no existe';
+            }
             //Debido a que no sabemos cuál es la cantidad del producto a eliminar, se elimina el producto completo con cualquier cantidad
             $this->productos = preg_replace('/' . strtolower($string[1]) . ' x\d+/', '', $this->productos);
         }
