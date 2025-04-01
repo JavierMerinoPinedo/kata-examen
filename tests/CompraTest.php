@@ -7,14 +7,19 @@ use PHPUnit\Framework\TestCase;
 
 class CompraTest extends TestCase
 {
+    private Compra $compra;
+    protected function setUp(): void
+    {
+        parent::setUp();
+        $this->compra = new Compra();
+    }
+
     /**
      * @test
      */
     public function givenAProductIsAddedToThePurchase(): void
     {
-        $compra = new Compra();
-
-        $result = $compra->execute('añadir pan 2');
+        $result = $this->compra->execute('añadir pan 2');
 
         $this->assertEquals('pan x2', $result);
     }
@@ -24,9 +29,7 @@ class CompraTest extends TestCase
      */
     public function givenAProductWithUpperAndLowerCaseIsAddedToThePurchaseWithLowerCase(): void
     {
-        $compra = new Compra();
-
-        $result = $compra->execute('añadir PaN 2');
+        $result = $this->compra->execute('añadir PaN 2');
 
         $this->assertEquals('pan x2', $result);
     }
@@ -36,9 +39,7 @@ class CompraTest extends TestCase
      */
     public function givenAProductWithoutQuantityIsAddedToPurchaseWithQuantityOne(): void
     {
-        $compra = new Compra();
-
-        $result = $compra->execute('añadir pan');
+        $result = $this->compra->execute('añadir pan');
 
         $this->assertEquals('pan x1', $result);
     }
@@ -48,10 +49,8 @@ class CompraTest extends TestCase
      */
     public function givenAProductThatIsAddedToThePurchaseTheQuantityIncrease(): void
     {
-        $compra = new Compra();
-
-        $compra->execute('añadir pan 2');
-        $result = $compra->execute('añadir PaN 3');
+        $this->compra->execute('añadir pan 2');
+        $result = $this->compra->execute('añadir PaN 3');
 
         $this->assertEquals('pan x5', $result);
     }
@@ -61,10 +60,8 @@ class CompraTest extends TestCase
      */
     public function givenAProductThatIsNotAddedToThePurchaseAddedToThePurchase(): void
     {
-        $compra = new Compra();
-
-        $compra->execute('añadir pan 2');
-        $result = $compra->execute('añadir leche 3');
+        $this->compra->execute('añadir pan 2');
+        $result = $this->compra->execute('añadir leche 3');
 
         $this->assertEquals('pan x2, leche x3', $result);
     }
@@ -74,10 +71,8 @@ class CompraTest extends TestCase
      */
     public function givenAProductDeleteFromThePurchaseTheProduct(): void
     {
-        $compra = new Compra();
-
-        $compra->execute('añadir pan 2');
-        $result = $compra->execute('eliminar pan');
+        $this->compra->execute('añadir pan 2');
+        $result = $this->compra->execute('eliminar pan');
 
         $this->assertEquals('', $result);
     }
