@@ -17,6 +17,8 @@ class Compra
                     $prod = explode(' ', $this->productos);
                     $cantidad = ((int) $prod[1][1] + $cantidad);
                     $this->productos = strtolower($string[1]) . ' x' . $cantidad;
+                } else {
+                    $this->productos = $this->productos . ', ' . strtolower($string[1]) . ' x' . $cantidad;
                 }
             } else {
                 $this->productos = $this->productos . strtolower($string[1]) . ' x' . $cantidad;

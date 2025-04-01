@@ -55,4 +55,17 @@ class CompraTest extends TestCase
 
         $this->assertEquals('pan x5', $result);
     }
+
+    /**
+     * @test
+     */
+    public function givenAProductThatIsNotAddedToThePurchaseAddedToThePurchase(): void
+    {
+        $compra = new Compra();
+
+        $compra->execute('añadir pan 2');
+        $result = $compra->execute('añadir leche 3');
+
+        $this->assertEquals('pan x2, leche x3', $result);
+    }
 }
