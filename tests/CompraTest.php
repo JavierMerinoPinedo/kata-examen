@@ -18,4 +18,16 @@ class CompraTest extends TestCase
 
         $this->assertEquals('pan x2', $result);
     }
+
+    /**
+     * @test
+     */
+    public function dadoUnProductoConMayusculasSeAñadeALaCompraEnMinusculas(): void
+    {
+        $compra = new Compra();
+
+        $result = $compra->execute('añadir PaN 2');
+
+        $this->assertEquals('pan x2', $result);
+    }
 }
