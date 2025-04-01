@@ -19,9 +19,7 @@ class CompraTest extends TestCase
      */
     public function givenAProductIsAddedToThePurchase(): void
     {
-        $result = $this->compra->execute('añadir pan 2');
-
-        $this->assertEquals('pan x2', $result);
+        $this->assertEquals('pan x2', $this->compra->execute('añadir pan 2'));
     }
 
     /**
@@ -29,9 +27,7 @@ class CompraTest extends TestCase
      */
     public function givenAProductWithUpperAndLowerCaseIsAddedToThePurchaseWithLowerCase(): void
     {
-        $result = $this->compra->execute('añadir PaN 2');
-
-        $this->assertEquals('pan x2', $result);
+        $this->assertEquals('pan x2', $this->compra->execute('añadir PaN 2'));
     }
 
     /**
@@ -39,9 +35,7 @@ class CompraTest extends TestCase
      */
     public function givenAProductWithoutQuantityIsAddedToPurchaseWithQuantityOne(): void
     {
-        $result = $this->compra->execute('añadir pan');
-
-        $this->assertEquals('pan x1', $result);
+        $this->assertEquals('pan x1', $this->compra->execute('añadir pan'));
     }
 
     /**
@@ -50,9 +44,8 @@ class CompraTest extends TestCase
     public function givenAProductThatIsAddedToThePurchaseTheQuantityIncrease(): void
     {
         $this->compra->execute('añadir pan 2');
-        $result = $this->compra->execute('añadir PaN 3');
 
-        $this->assertEquals('pan x5', $result);
+        $this->assertEquals('pan x5', $this->compra->execute('añadir PaN 3'));
     }
 
     /**
@@ -61,9 +54,7 @@ class CompraTest extends TestCase
     public function givenAProductThatIsNotAddedToThePurchaseAddedToThePurchase(): void
     {
         $this->compra->execute('añadir pan 2');
-        $result = $this->compra->execute('añadir leche 3');
-
-        $this->assertEquals('pan x2, leche x3', $result);
+        $this->assertEquals('pan x2, leche x3', $this->compra->execute('añadir leche 3'));
     }
 
     /**
@@ -72,9 +63,7 @@ class CompraTest extends TestCase
     public function givenAProductDeleteFromThePurchaseTheProduct(): void
     {
         $this->compra->execute('añadir pan 2');
-        $result = $this->compra->execute('eliminar pan');
-
-        $this->assertEquals('', $result);
+        $this->assertEquals('', $this->compra->execute('eliminar pan'));
     }
 
     /**
@@ -83,8 +72,6 @@ class CompraTest extends TestCase
     public function givenAProductThatNotExistsInTHePurchaseReturnsErrorMessage(): void
     {
         $this->compra->execute('añadir pan 2');
-        $result = $this->compra->execute('eliminar leche');
-
-        $this->assertEquals('El producto seleccionado no existe', $result);
+        $this->assertEquals('El producto seleccionado no existe', $this->compra->execute('eliminar leche'));
     }
 }
