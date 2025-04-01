@@ -74,4 +74,14 @@ class CompraTest extends TestCase
         $this->compra->execute('añadir pan 2');
         $this->assertEquals('El producto seleccionado no existe', $this->compra->execute('eliminar leche'));
     }
+
+    /**
+     * @test
+     */
+    public function givenAEmptyOrderReturnsEmptyPurchase(): void
+    {
+        $result = $this->compra->execute('vaciar');
+
+        $this->assertEquals('', $result);
+    }
 }

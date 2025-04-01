@@ -28,6 +28,8 @@ class Compra
                 return 'El producto seleccionado no existe';
             }
             $this->productos = preg_replace('/' . strtolower($string[1]) . ' x\d+/', '', $this->productos);
+        } elseif ($string[0] == 'vaciar') {
+            $this->productos = '';
         }
 
         return $this->productos;
